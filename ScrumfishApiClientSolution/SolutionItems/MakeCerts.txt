@@ -1,0 +1,11 @@
+Makecert –r –pe –n CN="expired.example.com" –b 05/10/2010 –e 12/22/2011 –eku 1.3.6.1.5.5.7.3.1 -sky exchange –sp "Microsoft RSA SChannel Cryptographic Provider" –sy 12 -sv expired.example.com.pvk expired.example.com.cer
+PVK2PFX –pvk expired.example.com.pvk –spc expired.example.com.cer –pfx expired.example.com.pfx –po password
+
+Makecert –r –pe –n CN="valid.example.com" –b 05/10/2010 –e 12/22/2029 –eku 1.3.6.1.5.5.7.3.1 -sky exchange –sp "Microsoft RSA SChannel Cryptographic Provider" –sy 12 -sv valid.example.com.pvk valid.example.com.cer
+PVK2PFX –pvk valid.example.com.pvk –spc valid.example.com.cer –pfx valid.example.com.pfx –po password
+
+Makecert –r –pe –n CN="thumbprint.example.com" –b 05/10/2010 –e 12/22/2029 –eku 1.3.6.1.5.5.7.3.1 -sky exchange –sp "Microsoft RSA SChannel Cryptographic Provider" –sy 12 -sv thumbprint.example.com.pvk thumbprint.example.com.cer
+PVK2PFX –pvk thumbprint.example.com.pvk –spc thumbprint.example.com.cer –pfx thumbprint.example.com.pfx –po password
+
+Makecert –r –pe –n CN="unused.example.com" –b 05/10/2010 –e 12/22/2029 –eku 1.3.6.1.5.5.7.3.1 -sky exchange –sp "Microsoft RSA SChannel Cryptographic Provider" –sy 12 -sv unused.example.com.pvk unused.example.com.cer
+PVK2PFX –pvk unused.example.com.pvk –spc unused.example.com.cer –pfx unused.example.com.pfx –po password
