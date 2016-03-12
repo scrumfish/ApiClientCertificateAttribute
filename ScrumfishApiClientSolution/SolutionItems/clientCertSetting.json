@@ -1,0 +1,6 @@
+{
+  "location": "West US",
+  "properties": {
+    "clientCertEnabled": true
+  }
+}

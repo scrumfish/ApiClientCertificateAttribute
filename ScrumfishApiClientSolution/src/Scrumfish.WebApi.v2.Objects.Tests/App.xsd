@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="scrumfish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="simpleProvider">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="users">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="claims">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="add">
+                                  <xs:complexType>
+                                    <xs:attribute name="key" type="xs:string" use="required" />
+                                    <xs:attribute name="claim" type="xs:string" use="required" />
+                                    <xs:attribute name="value" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="userName" type="xs:string" use="required" />
+                        <xs:attribute name="certificate" type="xs:string" use="optional" />
+                        <xs:attribute name="thumbprint" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
