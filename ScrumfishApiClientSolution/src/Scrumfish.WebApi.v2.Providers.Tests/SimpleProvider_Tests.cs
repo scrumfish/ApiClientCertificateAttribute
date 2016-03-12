@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
@@ -18,17 +17,17 @@ namespace Scrumfish.WebApi.v2.Providers.Tests
             _target = new SimpleProvider();
         }
 
+
         [TestCleanup]
         public void TearDown()
         {
             ConfigurationManager.AppSettings["scrumfish.SimpleProvider.TestUser"] = null;
+            ConfigurationManager.AppSettings["scrumfish.SimpleProvider.ValidationMode"] = "None";
         }
+
         private static X509Certificate2 GetX509Certificate(string fileName)
         {
-            var certFile = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            var buffer = new byte[certFile.Length];
-            certFile.Read(buffer, 0, (int)certFile.Length);
-            var certificate = new X509Certificate2(buffer, "password");
+            var certificate = new X509Certificate2(fileName);
             return certificate;
         }
 
@@ -90,7 +89,7 @@ namespace Scrumfish.WebApi.v2.Providers.Tests
         [TestMethod]
         public void Validate_ReturnsTrueIfCertificateFoundAndValid_Test()
         {
-            var certificate = GetX509Certificate("valid.example.com.pfx");
+            var certificate = GetX509Certificate("valid.example.com.cer");
             var result = _target.Validate(certificate);
             Assert.IsTrue(result);
         }
@@ -98,7 +97,8 @@ namespace Scrumfish.WebApi.v2.Providers.Tests
         [TestMethod]
         public void Validate_ReturnsFalseIfCertificateFoundAndExpired_Test()
         {
-            var certificate = GetX509Certificate("expired.example.com.pfx");
+            ConfigurationManager.AppSettings["scrumfish.SimpleProvider.ValidationMode"] = "DatesOnly";
+            var certificate = GetX509Certificate("expired.example.com.cer");
             var result = _target.Validate(certificate);
             Assert.IsFalse(result);
         }
@@ -106,9 +106,43 @@ namespace Scrumfish.WebApi.v2.Providers.Tests
         [TestMethod]
         public void Validate_ReturnsFalseIfCertificateNotFound_Test()
         {
-            var certificate = GetX509Certificate("unused.example.com.pfx");
+            var certificate = GetX509Certificate("unused.example.com.cer");
             var result = _target.Validate(certificate);
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Validate_ReturnsTrueIfCertificateThumbprintFoundAndValid_Test()
+        {
+            var certificate = GetX509Certificate("thumbprint.example.com.cer");
+            var result = _target.Validate(certificate);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void GetPrincipal_ReturnsExpectedUserFromCertificate_Test()
+        {
+            var expected = "Valid User";
+            var certificate = GetX509Certificate("valid.example.com.cer");
+            var result = _target.GetPrincipal(certificate);
+            Assert.AreEqual(expected,result.Identity.Name);
+        }
+
+        [TestMethod]
+        public void GetPrincipal_ReturnsExpectedUserFromThumbprint_Test()
+        {
+            var expected = "Thumbprint User";
+            var certificate = GetX509Certificate("thumbprint.example.com.cer");
+            var result = _target.GetPrincipal(certificate);
+            Assert.AreEqual(expected, result.Identity.Name);
+        }
+
+        [TestMethod]
+        public void GetPrincipal_ReturnsNullForUnlistedCertificate_Test()
+        {
+            var certificate = GetX509Certificate("unused.example.com.cer");
+            var result = _target.GetPrincipal(certificate);
+            Assert.IsNull(result);
         }
     }
 }

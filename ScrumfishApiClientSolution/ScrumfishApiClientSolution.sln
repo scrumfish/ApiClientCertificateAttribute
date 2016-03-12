@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrumfish.WebApi.v2.Filters", "src\Scrumfish.WebApi.v2.Filters\Scrumfish.WebApi.v2.Filters.csproj", "{9CC727BE-C69B-4783-A604-AC4366F03282}"
 EndProject
@@ -27,10 +27,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrumfish.WebApi.v2.Provide
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{672A52C7-B384-4CAE-A3BF-BE6790AA8795}"
 	ProjectSection(SolutionItems) = preProject
+		SolutionItems\certPassword.txt = SolutionItems\certPassword.txt
+		SolutionItems\clientCertSetting.json = SolutionItems\clientCertSetting.json
+		SolutionItems\EnableClientCertsInAzure.ps1 = SolutionItems\EnableClientCertsInAzure.ps1
 		SolutionItems\expired.example.com.cer = SolutionItems\expired.example.com.cer
 		SolutionItems\expired.example.com.pfx = SolutionItems\expired.example.com.pfx
 		SolutionItems\expired.example.com.pvk = SolutionItems\expired.example.com.pvk
+		..\LICENSE = ..\LICENSE
 		SolutionItems\MakeCerts.txt = SolutionItems\MakeCerts.txt
+		..\README.md = ..\README.md
 		SolutionItems\thumbprint.example.com.cer = SolutionItems\thumbprint.example.com.cer
 		SolutionItems\thumbprint.example.com.pfx = SolutionItems\thumbprint.example.com.pfx
 		SolutionItems\thumbprint.example.com.pvk = SolutionItems\thumbprint.example.com.pvk
@@ -42,40 +47,73 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SolutionItems\valid.example.com.pvk = SolutionItems\valid.example.com.pvk
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{5F820A46-AF6E-4D5D-87CB-4CE9476EDA28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrumfish.WebApi.v2.ApiSite", "src\Scrumfish.WebApi.v2.ApiSite\Scrumfish.WebApi.v2.ApiSite.csproj", "{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrumfish.WebApi.v2.ApiSite.Tests", "src\Scrumfish.WebApi.v2.ApiSite.Tests\Scrumfish.WebApi.v2.ApiSite.Tests.csproj", "{2667D017-A8A7-4796-8B44-0B6A6150CF0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9CC727BE-C69B-4783-A604-AC4366F03282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CC727BE-C69B-4783-A604-AC4366F03282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC727BE-C69B-4783-A604-AC4366F03282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CC727BE-C69B-4783-A604-AC4366F03282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC727BE-C69B-4783-A604-AC4366F03282}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{9CC727BE-C69B-4783-A604-AC4366F03282}.Test|Any CPU.Build.0 = Test|Any CPU
 		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{A733B667-159C-46D8-8CE5-E1FFDFDF65D6}.Test|Any CPU.Build.0 = Test|Any CPU
 		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{07A53DCD-C21E-4E38-966A-FB9F04BDBA21}.Test|Any CPU.Build.0 = Test|Any CPU
 		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{87CD1F04-8A24-4856-9483-19DE10EA4E06}.Test|Any CPU.Build.0 = Test|Any CPU
 		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A}.Test|Any CPU.Build.0 = Test|Any CPU
 		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{0DBA12C0-7BD4-44C7-AC53-29386973554B}.Test|Any CPU.Build.0 = Test|Any CPU
 		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{407A29CE-7AB7-42D2-9501-B2FE02636819}.Test|Any CPU.Build.0 = Test|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B}.Test|Any CPU.Build.0 = Test|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E}.Test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,5 +129,8 @@ Global
 		{8CF4C7DA-1A23-48B7-B8A7-537A0BEFBC3A} = {B3B3588C-F63E-4E52-BB46-7B797C460751}
 		{0DBA12C0-7BD4-44C7-AC53-29386973554B} = {5ABA8B1F-EB61-4AFC-A76C-D6FEE6068C48}
 		{407A29CE-7AB7-42D2-9501-B2FE02636819} = {B3B3588C-F63E-4E52-BB46-7B797C460751}
+		{5F820A46-AF6E-4D5D-87CB-4CE9476EDA28} = {D260E4E1-75F2-4592-9471-270FDA81F80B}
+		{1F06A672-EDB9-4CCD-A2E7-2B7FEA5B208B} = {5F820A46-AF6E-4D5D-87CB-4CE9476EDA28}
+		{2667D017-A8A7-4796-8B44-0B6A6150CF0E} = {5F820A46-AF6E-4D5D-87CB-4CE9476EDA28}
 	EndGlobalSection
 EndGlobal
