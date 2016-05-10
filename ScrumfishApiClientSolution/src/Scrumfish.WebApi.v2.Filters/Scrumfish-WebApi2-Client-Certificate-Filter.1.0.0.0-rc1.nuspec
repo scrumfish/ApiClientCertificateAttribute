@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>Scrumfish-WebApi2-Client-Certificate-Filter</id>
+        <version>1.0.0.0-rc1</version>
+        <title>Web API 2 Client Certificate Filter</title>
+        <authors>Steve Reece</authors>
+        <owners>Steve Reece</owners>
+        <licenseUrl>https://github.com/scrumfish/ApiClientCertificateAttribute/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/scrumfish/ApiClientCertificateAttribute</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>This library helps with adding client side certificate mappings to a Web API.  It is most useful for developers using Azure Management API.
+In your WebApiConfig.cs add the following line:
+config.Filters.Add(new ClientCertificateAuthenticateFilter());</description>
+        <releaseNotes>This is the initial 0.1 release.</releaseNotes>
+        <copyright>Copyright 2016</copyright>
+        <tags>C# WebApi Azure AuthenticationFilter IAuthenticationFilter</tags>
+        <dependencies>
+            <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="3.2.1" />
+            <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="app.config.transform" target="content\net452\app.config.transform" />
+        <file src="app.Release.config.transform" target="content\net452\app.Release.config.transform" />
+        <file src="bin\Release\Scrumfish.WebApi.v2.Filters.dll" target="lib\net452\Scrumfish.WebApi.v2.Filters.dll" />
+        <file src="bin\Release\Scrumfish.WebApi.v2.Objects.dll" target="lib\net452\Scrumfish.WebApi.v2.Objects.dll" />
+        <file src="..\Scrumfish.WebApi.v2.Providers\bin\Release\Scrumfish.WebApi.v2.Providers.dll" target="lib\net452\Scrumfish.WebApi.v2.Providers.dll" />
+    </files>
+</package>
