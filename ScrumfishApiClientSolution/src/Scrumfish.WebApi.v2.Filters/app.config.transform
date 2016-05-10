@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="scrumfish">
+      <section name="simpleProvider"
+               type="Scrumfish.WebApi.v2.Objects.Config.SimpleProviderSection, Scrumfish.WebApi.v2.Objects" />
+    </sectionGroup>
+  </configSections>
+  <appSettings>
+    <add key="scrumfish.WebApi.v2.AuthenticationProvder" value="Scrumfish.WebApi.v2.Providers.SimpleProvider, Scrumfish.WebApi.v2.Providers"/>
+    <add key="scrumfish.WebApi.v2.Enabled" value="false"/>
+    <add key="scrumfish.SimpleProvider.ValidationMode" value="DatesOnly"/>
+  </appSettings>
+  <scrumfish>
+    <simpleProvider>
+      <users>
+        <add userName="**user name example 1**"
+             certificate="**base64 encoded certificate**">
+          <claims>
+            <add key="claim1"
+                 claim="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+                 value="expired.user@example.com"/>
+            <add key="claim2"
+                 claim="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"
+                 value="userfi001@domain.example.com"/>
+            <add key="claim3"
+       claim="http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+       value="User"/>
+            <add key="claim4"
+                 claim="http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                 value="PowerUser"/>
+          </claims>
+        </add>
+        <add userName="**user name example 2"
+               thumbprint="**thumbprint**">
+          <claims>
+            <add key="claim1"
+                 claim="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+                 value="thumbprint.user@example.com"/>
+            <add key="claim2"
+                 claim="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"
+                 value="thumb0042@domain.example.com"/>
+            <add key="claim3"
+                 claim="http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                 value="Manager"/>
+          </claims>
+        </add>
+      </users>
+    </simpleProvider>
+  </scrumfish>
+</configuration>
